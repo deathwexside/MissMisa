@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Миса Чернова — Фан-сайт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="https://i.ibb.co/C5phNL" />
+    <style>
+        :root {
+          --bg: #0d0d0d;
+          --text: #ffffff;
+          --pink: #ff69b4;
+          --light-pink: #ffb6c1;
+          --lavender: #b57edc;
+          --blue: #87cefa;
+          --card-bg: #1c1c1c;
+        }
+
+        body {
+          margin: 0;
+          font-family: 'Roboto', sans-serif;
+          background-color: var(--bg);
+          color: var(--text);
+          line-height: 1.6;
+        }
+
+        header {
+          text-align: center;
+          padding: 4rem 1rem;
+          background: linear-gradient(135deg, var(--pink), var(--lavender));
+          color: var(--bg);
+        }
+
+        h1 {
+          font-family: 'Playfair Display', serif;
+          font-size: 3.5rem;
+          margin-bottom: 0.3rem;
+          letter-spacing: 1px;
+        }
+
+        h2 {
+          color: var(--pink);
+          font-size: 2.2rem;
+          margin: 2rem 0 1rem;
+          text-align: center;
+        }
+
+        nav {
+          text-align: center;
+          margin-top: 1.5rem;
+        }
+
+        nav a {
+          color: var(--bg);
+          background-color: var(--light-pink);
+          padding: 0.6rem 1.2rem;
+          border-radius: 30px;
+          margin: 0 0.6rem;
+          text-decoration: none;
+          font-weight: bold;
+          transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+          background-color: var(--blue);
+          color: var(--bg);
+        }
+
+        section {
+          padding: 2rem 1rem;
+          max-width: 1200px;
+          margin: auto;
+        }
+
+        /* Галерея */
+        .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+
+        .card {
+          background: var(--card-bg);
+          border: 2px solid var(--lavender);
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          height: 400px; /* фиксированная высота */
+        }
+
+        .card:hover {
+          transform: scale(1.03);
+          box-shadow: 0 0 25px var(--blue);
+        }
+
+        .card img {
+          width: 100%;
+          height: 340px; /* фиксированная высота для изображения */
+          object-fit: cover; /* обрезает и масштабирует, сохраняя пропорции */
+          flex-shrink: 0;
+          border-bottom: 2px solid var(--lavender);
+        }
+
+        .card p {
+          padding: 0.8rem 1rem;
+          color: var(--light-pink);
+          font-weight: bold;
+          text-align: center;
+          background: linear-gradient(45deg, #2a2a2a, #1c1c1c);
+          margin: 0;
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* About */
+        .about {
+          background-color: #1a1a1a;
+          padding: 1.5rem;
+          border-left: 6px solid var(--lavender);
+          border-radius: 12px;
+          font-size: 1.1rem;
+        }
+
+        .about strong {
+          color: var(--pink);
+          font-weight: bold;
+        }
+
+        /* Comments */
+        .comments {
+          margin-top: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .comment {
+          background-color: #2a2a2a;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          border-left: 4px solid var(--pink);
+          font-style: italic;
+          font-size: 1rem;
+        }
+
+        /* Links */
+        .links {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 2rem;
+        }
+
+        .links a {
+          padding: 0.7rem 1.5rem;
+          background: linear-gradient(45deg, var(--pink), var(--lavender));
+          color: var(--bg);
+          border-radius: 30px;
+          font-weight: bold;
+          text-decoration: none;
+          transition: background 0.3s;
+          font-size: 1rem;
+        }
+
+        .links a:hover {
+          background: linear-gradient(45deg, var(--blue), var(--lavender));
+          color: var(--bg);
+        }
+
+        footer {
+          text-align: center;
+          padding: 2rem 1rem;
+          font-size: 0.9rem;
+          color: #aaa;
+          margin-top: 2rem;
+        }
+
+        /* === Анимация появления при скролле === */
+        .scroll-anim {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+          will-change: opacity, transform;
+        }
+
+        .scroll-anim.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<header class="scroll-anim">
+    <h1>Миса Чернова</h1>
+    <p>Очарование косплея — в каждом образе 💖</p>
+    <nav>
+        <a href="#gallery">Галерея</a>
+        <a href="#about">Про Александру</a>
+        <a href="#comments">Комментарии</a>
+        <a href="#links">Ссылки</a>
+    </nav>
+</header>
+
+<section id="gallery" class="scroll-anim">
+    <h2>Галерея</h2>
+    <div class="gallery">
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/qM10kqLg/image.png" alt="Люмин cosplay" />
+            <p>Люмин</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/wZ1gMG8J/photo-4-2025-06-18-10-45-13.jpg" alt="Мэгумин cosplay" />
+            <p>Мэгумин</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/7dqBDQr7/image.png" alt="Хошино Аи cosplay" />
+            <p>Хошино Аи</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/tp2ZTLZf/photo-2-2025-06-18-11-23-13.jpg" alt="Гавр Гура cosplay" />
+            <p>Гавр Гура</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/DsvYh4Y/image.png" alt="Мику Хацунэ" />
+            <p>Мику Хацунэ</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/wryG4kVr/photo-2024-09-29-19-27-34.jpg" alt="Нэзуко cosplay" />
+            <p>Нэзуко Камадо</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/jkBGD7zz/image.png" alt="Крул cosplay" />
+            <p>Крул Цепеш</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/kVTn8Zwz/image.png" alt="Юно cosplay" />
+            <p>Юно Гасай</p>
+        </div>
+        <div class="card scroll-anim">
+            <img src="https://i.ibb.co/nq3TVzVK/image.png" alt="Медуза cosplay">
+            <p>Горгона Медуза</p>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="scroll-anim">
+    <h2>Про Александру</h2>
+    <div class="about">
+        <p>
+            Александра, известная как <strong>Миса Чернова</strong>, — это не просто косплеерша, а настоящее воплощение эстетики, стиля и магии перевоплощений.
+            Её образы не оставляют равнодушными: в каждой детали — грация, выразительность и тонкий вкус.
+            Её красота — это не только внешность, но и энергия, которую она передаёт через каждый образ 💖
+            Быть на одной волне с такой яркой личностью — уже вдохновение ✨
+        </p>
+    </div>
+</section>
+
+<section id="comments" class="scroll-anim">
+    <h2>Фан-комментарии</h2>
+    <div class="comments">
+        <div class="comment scroll-anim">Только не взрывай подпищеков!!!</div>
+        <div class="comment scroll-anim">Ооо, приветик, Недзуко с Эпика 💘 Какими-то чудом тг завёл меня на твой аккаунт</div>
+        <div class="comment scroll-anim">Бог косплея!</div>
+        <div class="comment scroll-anim">Ну как можно быть такой милашечной?</div>
+        <div class="comment scroll-anim">Вау, ты ослепила меня красотой 😍</div>
+        <div class="comment scroll-anim">Божечки, ну какая нежнушка❤️❤️</div>
+        <div class="comment scroll-anim">Ваааййй, милая какая</div>
+        <div class="comment scroll-anim">Напоминаю ее чуть на шашлык не пустили недавно</div>
+        <div class="comment scroll-anim">Надеюсь повар не пустил недзуко на другие блюда</div>
+        <div class="comment scroll-anim">Замечательно!</div>
+        <div class="comment scroll-anim">Натсунэ Мику 🥴</div>
+    </div>
+</section>
+
+<section id="links" class="scroll-anim">
+    <h2>Соцсети</h2>
+    <div class="links">
+        <a href="https://t.me/Misa_Cosplay0101" target="_blank" class="scroll-anim">Telegram</a>
+        <a href="https://tiktok.com/@_miss_misa_" target="_blank" class="scroll-anim">TikTok</a>
+    </div>
+</section>
+
+<script>
+    // Проверяем, виден ли элемент в зоне видимости
+    function isVisible(el) {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+    }
+
+    function onScroll() {
+      document.querySelectorAll('.scroll-anim').forEach(el => {
+        if (isVisible(el)) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+</script>
+<footer class="">
+    © 2025 Сделано фанатом/сыном Мисы Черновой ❤️.
+</footer>
+</body>
+</html>
